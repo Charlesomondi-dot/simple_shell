@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * c_strcat - concatenate two strings ignoring the first character ("~" in cd)
- * @dest: string to be appended to
- * @src: string to append
- * Return: concatenated string
+* c_strcat - concatenate two strings ignoring the first character ("~" in cd)
+* @dest: string to be appended to
+* @src: string to append
+* Return: concatenated string
 */
 char *c_strcat(char *dest, char *src)
 {
@@ -42,12 +42,12 @@ return (dest);
 }
 
 /**
- * c_setenv - custom _setenv by concatenating string first before setting
- * @env: environmental variable linked list
- * @name: environmental variable name 
- * @dir: directory path
- * Return:success 0
- */
+* c_setenv - custom _setenv by concatenating string first before setting
+* @env: environmental variable linked list
+* @name: environmental variable name 
+* @dir: directory path
+* Return:success 0
+*/
 int c_setenv(list_t **env, char *name, char *dir)
 {
 int index = 0, j = 0;
@@ -75,10 +75,10 @@ return (0);
 }
 
 /**
- * cd_only - change directory to home
- * @env: bring in environmental linked list to update PATH and OLDPWD
- * @current: bring in current working directotry
- */
+* cd_only - change directory to home
+* @env: bring in environmental linked list to update PATH and OLDPWD
+* @current: bring in current working directotry
+*/
 void cd_only(list_t *env, char *current)
 {
 char *home = NULL;
@@ -88,7 +88,7 @@ c_setenv(&env, "OLDPWD", current);
 /* update env OLDPWD */
 free(current);
 if (access(home, F_OK) == 0)
-	/* if exist, go to home dir */
+/* if exist, go to home dir */
 chdir(home);
 current = NULL;
 current = getcwd(current, 0);
@@ -98,13 +98,13 @@ free(current);
 free(home);
 }
 /**
- * cd_execute - executes the cd
- * @env: bring in environmental linked list to update PATH and OLDPWD
- * @current: bring in current working directotry
- * @dir: bring in directory path to change to
- * @str: bring in the 1st argument to write out error
- * @num: bring in the line number to write out error
- * Return: success 0 if fail 2
+* cd_execute - executes the cd
+* @env: bring in environmental linked list to update PATH and OLDPWD
+* @current: bring in current working directotry
+* @dir: bring in directory path to change to
+* @str: bring in the 1st argument to write out error
+* @num: bring in the line number to write out error
+* Return: success 0 if fail 2
 */
 int cd_execute(list_t *env, char *current, char *dir, char *str, int num)
 {
@@ -133,12 +133,12 @@ return (i);
 }
 
 /**
- * _cd - change directory
- * @str: user's typed in command
- * @env: enviromental linked list to retrieve HOME and OLDPWD paths
- * @num: nth user command, to be used at error message
- * Return: success 0 if fail 2
- */
+* _cd - change directory
+* @str: user's typed in command
+* @env: enviromental linked list to retrieve HOME and OLDPWD paths
+* @num: nth user command, to be used at error message
+* Return: success 0 if fail 2
+*/
 int _cd(char **str, list_t *env, int num)
 {
 char *current = NULL, *dir = NULL;
@@ -149,7 +149,7 @@ current = getcwd(current, 0);
 if (str[1] != NULL)
 {
 if (str[1][0] == '~') 
-	/* Usage: cd ~ */
+/* Usage: cd ~ */
 {
 dir = get_env("HOME", env);
 dir = c_strcat(dir, str[1]);

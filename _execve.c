@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * c_exit - frees user's typed command and linked list before exiting
- * @str: user's typed command
- * @env: input the linked list of envirnment
- */
+* c_exit - frees user's typed command and linked list before exiting
+* @str: user's typed command
+* @env: input the linked list of envirnment
+*/
 void c_exit(char **str, list_t *env)
 {
 free_double_ptr(str);
@@ -13,12 +13,12 @@ _exit(0);
 }
 
 /**
- * _execve - execute command user typed into shell
- * @s: command user typed
- * @env: environmental variable
- * @num: nth user command; to be used in error message
- * Return: success 0
- */
+* _execve - execute command user typed into shell
+* @s: command user typed
+* @env: environmental variable
+* @num: nth user command; to be used in error message
+* Return: success 0
+*/
 int _execve(char **s, list_t *env, int num)
 {
 char *holder;
@@ -46,7 +46,7 @@ else
 {
 pid = fork();
 if (pid == 0) 
-	/* if child process, execute */
+/* if child process, execute */
 {
 if (execve(holder, s, NULL) == -1)
 {
