@@ -13,15 +13,12 @@ char buff[1024];
 /* read while there's stdin greater than buffsize; -1 to add a '\0' */
 while (t2 == 0 && (i = read(STDIN_FILENO, buff, 1024 - 1)))
 {
-if (i == -1) 
-/* check if read errored */
+if (i == -1) /* check if read errored */
 return (-1);
 
-buff[i] = '\0'; 
-/* terminate buff with \0 to use with _strcat */
+buff[i] = '\0'; /* terminate buff with \0 to use with _strcat */
 
-n = 0; 
-/* last loop if \n is found in the stdin read */
+n = 0; /* last loop if \n is found in the stdin read */
 while (buff[n] != '\0')
 {
 if (buff[n] == '\n')

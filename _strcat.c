@@ -2,7 +2,7 @@
 
 /**
 * _strcat - concatenate two strings
-* @dest: string to be appended 
+* @dest: string to be appended to
 * @src: string to append
 * Return: concatenated string
 */
@@ -13,7 +13,7 @@ int len2 = 0;
 int total_len = 0;
 int j = 0;
 
-
+/* find total length of both strings to _realloc */
 while (dest[len] != '\0')
 {
 len++;
@@ -25,6 +25,7 @@ len2++;
 total_len++;
 }
 
+/* _realloc because dest was malloced outside of function */
 dest = _realloc(dest, len, sizeof(char) * total_len + 1);
 
 while (src[j] != '\0')

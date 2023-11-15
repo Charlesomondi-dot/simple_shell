@@ -2,21 +2,24 @@
 
 /**
 * c_strdup - custom string duplication; excludes beginning bytes
-* @str: string to duplicate 
-* @cs: number of bytes to exclude
-* Return: string 
+* @str: string to duplicate (e.g. environmental variable PATH=/bin:/bin/ls)
+* @cs: number of bytes to exclude (e.g. excludes "PATH=")
+* Return: string (e.g. /bin:/bin/ls)
 */
 char *c_strdup(char *str, int cs)
 {
 char *duplicate_str;
 int i, len = 0;
 
-if (str == NULL) 
+if (str == NULL) /* validate str input */
 return (NULL);
 
+/* calculate len + null terminator to malloc */
 while (*(str + len))
 len++;
 len++;
+
+/* allocate memory but exclude environmental variable title (PATH) */
 duplicate_str = malloc(sizeof(char) * (len - cs));
 if (duplicate_str == NULL)
 return (NULL);

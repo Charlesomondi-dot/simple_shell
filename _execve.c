@@ -17,7 +17,7 @@ _exit(0);
 * @s: command user typed
 * @env: environmental variable
 * @num: nth user command; to be used in error message
-* Return: success 0
+* Return: 0 on success
 */
 int _execve(char **s, list_t *env, int num)
 {
@@ -41,22 +41,18 @@ not_found(s[0], num, env);
 free_double_ptr(s);
 return (127);
 }
-else 
-/* else fork and execute executable command */
+else /* else fork and execute executable command */
 {
 pid = fork();
-if (pid == 0) 
-/* if child process, execute */
+if (pid == 0) /* if child process, execute */
 {
 if (execve(holder, s, NULL) == -1)
 {
-not_found(s[0], num, env); 
-/* special err msg */
+not_found(s[0], num, env); /* special err msg */
 c_exit(s, env);
 }
 }
-else 
-/* if parent, wait for child then free all */
+else /* if parent, wait for child then free all */
 {
 wait(&status);
 free_double_ptr(s);
